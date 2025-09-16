@@ -15,6 +15,26 @@
         <ul class="nav navbar-nav navbar-right">
           <li id="home"><a href="/">HOME</a></li>
           <li id="about"><a href="/about">ABOUT US</a></li>
+          
+          <% if (typeof user !== 'undefined' && user.userId) { %>
+            <!-- User is logged in -->
+            <li id="compose"><a href="/compose">COMPOSE</a></li>
+            
+            <% if (user.userRole === 'admin') { %>
+              <!-- Admin user - show Admin link -->
+              <li id="admin"><a href="/admin">ADMIN</a></li>
+            <% } else { %>
+              <!-- Regular user - show User link -->
+              <li id="user"><a href="/profile">USER</a></li>
+            <% } %>
+            
+            <li id="logout"><a href="/logout">LOGOUT</a></li>
+          <% } else { %>
+            <!-- User is not logged in -->
+            <li id="login"><a href="/login">LOGIN</a></li>
+            <li id="register"><a href="/register">REGISTER</a></li>
+          <% } %>
+          
           <li id="contact"><a href="/contact">CONTACT US</a></li>
         </ul>
     </div>
